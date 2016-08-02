@@ -1,0 +1,56 @@
+MotherTongue = Italian
+Eng_MotherTongueDesc = "Mother Language"
+OtherLanguages = English,
+
+Skills = Programming, Scripting, HDL, SQL, Web, Misc
+
+Eng_Interests = Sport(soccer, running), Books, Music
+
+
+[Italian]
+	Eng_Name = Italian
+	Ita_Name = Italiano
+
+[English]
+	Eng_Name = English
+
+	Listening = "C1"
+	Reading = "C1"
+	SpokenInteraction = "B2"
+	SpokenProduction = "B2"
+	Writing = "B2"
+	Certification = "TOEFL IBT (2009): 97/120"
+
+
+
+[OS] 
+	Eng_Name = "Operating Systems"
+	Eng_Description = "Windows, Linux"
+
+[Programming] 
+	Eng_Name = "Programming Languages"
+	Eng_Description = "C, C++, Java, C\#, Python"
+
+[Scripting]
+	Eng_Name = "Scripting Languages"
+	Eng_Description = "Bash (Basic Knowledge)"
+
+[HDL]
+	Eng_Name = "Hardware Description Languages"
+	Eng_Description = "VHDL, Verilog (Basic Knowledge)"	
+
+[SQL]
+	Eng_Name = "SQL"
+	Eng_Description = "MySQL, Sqlite"	
+
+[NoSQL]
+	Eng_Name = "NoSQL"
+	Eng_Description = "Redis"
+
+[Web]
+	Eng_Name = "Web development"
+	Eng_Description = "HTML, PHP, CSS, JQuery, Websocket"
+
+[Misc]
+	Eng_Name = "Misc."
+	Eng_Description = "Matlab, R, RDMA"
