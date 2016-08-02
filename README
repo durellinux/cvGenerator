@@ -1,0 +1,4 @@
+Customize data folder
+Run this: python generateModernCv.py moderncv-template/ data/ out/ Eng -force_remove
+Customize .tex in out folder
+Compile using Latex
