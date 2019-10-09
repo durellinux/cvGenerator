@@ -3,6 +3,11 @@ Eng_Nationality = "Italian"
 Eng_DateOfBirth = "July, 24th 1987"
 Eng_Gender = "Male"
 
+Ita_City = "24040 Misano di Gera d'Adda (BG) - Italia"
+Ita_Nationality = "Italiana"
+Ita_DateOfBirth = "24/07/1987"
+Ita_Gender = "Maschio"
+
 FamilyName = "Durelli"
 FirstName = "Gianluca"
 MiddleName = "Carlo"

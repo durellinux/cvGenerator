@@ -1,4 +1,9 @@
-Eng_Date = "01/2013 - to date"
-Eng_Role = "PhD Candidate in Computer Science and Engineering"
+Eng_Date = "01/2013 - 02/2016"
+Eng_Role = "PhD in Computer Science and Engineering"
 Eng_Institution = "Politecnico di Milano, Milano (Italy)"
 Eng_Thesis = "On the Design of Autonomic Techniques for Runtime Resource Management in Heterogeneous Systems"
+
+Ita_Date = "01/2013 - 02/2016"
+Ita_Role = "PhD in Computer Science"
+Ita_Institution = "Politecnico di Milano, Milano (Italia)"
+Ita_Thesis = "On the Design of Autonomic Techniques for Runtime Resource Management in Heterogeneous Systems"

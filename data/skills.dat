@@ -1,11 +1,12 @@
 MotherTongue = Italian
 Eng_MotherTongueDesc = "Mother Language"
+Ita_MotherTongueDesc = "Lingua madre"
 OtherLanguages = English,
 
-Skills = Programming, Scripting, HDL, SQL, Web, Misc
+Skills = Programming, Web, Testing, SQL
 
 Eng_Interests = Sport(soccer, running), Books, Music
-
+Ita_Interests = Sport(calcio, corsa), Libri, Musica
 
 [Italian]
 	Eng_Name = Italian
@@ -13,6 +14,7 @@ Eng_Interests = Sport(soccer, running), Books, Music
 
 [English]
 	Eng_Name = English
+	Ita_Name = Inglese
 
 	Listening = "C1"
 	Reading = "C1"
@@ -26,31 +28,54 @@ Eng_Interests = Sport(soccer, running), Books, Music
 [OS] 
 	Eng_Name = "Operating Systems"
 	Eng_Description = "Windows, Linux"
+	Ita_Name = "Sistemi Operativi"
+	Ita_Description = "Windows, Linux"
 
 [Programming] 
 	Eng_Name = "Programming Languages"
-	Eng_Description = "C, C++, Java, C\#, Python"
+	Eng_Description = "Java, Typescript, Python, C"
+	Ita_Name = "Linguaggi di Programmazione"
+	Ita_Description = "Java, Typescript, Python, C"
 
 [Scripting]
 	Eng_Name = "Scripting Languages"
 	Eng_Description = "Bash (Basic Knowledge)"
+	Ita_Name = "Linguaggi di Scripting"
+	Ita_Description = "Bash (conoscenza base)"
 
 [HDL]
 	Eng_Name = "Hardware Description Languages"
 	Eng_Description = "VHDL, Verilog (Basic Knowledge)"	
+	Ita_Name = "Linguaggi di descrizione hardware"
+	Ita_Description = "VHDL, Verilog (conoscenza base)"	
 
 [SQL]
-	Eng_Name = "SQL"
-	Eng_Description = "MySQL, Sqlite"	
+	Eng_Name = "Database Technologies"
+	Eng_Description = "MySQL, Elasticsearch"
+	Ita_Name = "Database"
+	Ita_Description = "MySQL, Elasticsearch"
 
 [NoSQL]
 	Eng_Name = "NoSQL"
 	Eng_Description = "Redis"
+	Ita_Name = "SQL"
+	Ita_Description = "MySQL, Sqlite"	
 
 [Web]
 	Eng_Name = "Web development"
-	Eng_Description = "HTML, PHP, CSS, JQuery, Websocket"
+	Eng_Description = "React, Node, HTML, CSS"
+	Ita_Name = "Sviluppo web"
+	Ita_Description = "React, Node, HTML, CSS"
+
+[Testing]
+    Eng_Name = "Testing Frameworks"
+	Eng_Description = "Junit, Jest, Cucumber/Gherkin"
+	Ita_Name = "Testing"
+	Ita_Description = "Junit, Jest, Cucumber/Gherkin"
+
 
 [Misc]
 	Eng_Name = "Misc."
 	Eng_Description = "Matlab, R, RDMA"
+	Ita_Name = "Altro"
+	Ita_Description = "Matlab, R, RDMA"

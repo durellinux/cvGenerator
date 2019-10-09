@@ -62,9 +62,11 @@ def education(data, destination, language):
 		thesis = getFromConfObg(edu, language+"_Thesis")
 		grade = getFromConfObg(edu, language+"_Grade")
 
+		thesisText = "Thesis" if language == "Eng" else "Tesi"
+
 		f.write("\cventry{"+date+"}{"+degree+role+"}{"+institution+"}{"+grade+"}{}{}\n")
 		if thesis!="":
-			f.write("\cvitem{Thesis}{"+thesis+"}")
+			f.write("\cvitem{"+thesisText+"}{"+thesis+"}")
 		f.write("\cvitem{}{}")
 
 	f.close()
@@ -124,11 +126,19 @@ def skills(data, destination, language):
 			first = "Others: "
 		else:
 			first = "~"
-		
-		f.write("\cventry{"+first+"}{"+name+"}{}{}{}{}\n")			
-		f.write("\cventry{~}{\\textnormal{Self evaluation: Listening: "+listening+", Reading: "+reading+", Speaking Production: "+speaking+", Speaking Interaction: "+interaction+", Writing: "+writing+"}}{}{}{}{}\n")
-		if certification!="":
-			f.write("\cventry{~}{\\textnormal{Certification: "+certification+"}}{}{}{}{}\n")
+
+		if language == "Ita":
+			f.write("\cventry{"+first+"}{"+name+"}{}{}{}{}\n")
+			f.write("\cventry{~}{\\textnormal{Auto valutazione: Ascolto: "+listening+", Lettura: "+reading+", Produzione orale: "+speaking+", Interazione: "+interaction+", Scrittura: "+writing+"}}{}{}{}{}\n")
+			if certification!="":
+				f.write("\cventry{~}{\\textnormal{Certificazioni: "+certification+"}}{}{}{}{}\n")
+		else:
+			f.write("\cventry{" + first + "}{" + name + "}{}{}{}{}\n")
+			f.write(
+				"\cventry{~}{\\textnormal{Self evaluation: Listening: " + listening + ", Reading: " + reading + ", Speaking Production: " + speaking + ", Speaking Interaction: " + interaction + ", Writing: " + writing + "}}{}{}{}{}\n")
+			if certification != "":
+				f.write("\cventry{~}{\\textnormal{Certification: " + certification + "}}{}{}{}{}\n")
+
 	f.close()
 
 	outfile = destination+os.sep+"skills.tex"
@@ -177,7 +187,7 @@ def selectedPublications(data, destination, language):
 
 	f.close()
 
-supportedLanguages = ["Eng"]
+supportedLanguages = ["Eng", "Ita"]
 
 if len(sys.argv)<5:
 	print "Usage: generateEuroPass.py template_folder data_folder destination_folder language [-force_remove]"
