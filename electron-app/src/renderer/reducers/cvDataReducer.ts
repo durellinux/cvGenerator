@@ -14,6 +14,7 @@ export const cvDataReducer: Reducer<CvData> = (
             return {
                 ...state,
                 personal: action.payload,
+                updated: true,
             };
         case CV_ACTION_TYPES.SAVE_BIO:
             return {
@@ -21,7 +22,8 @@ export const cvDataReducer: Reducer<CvData> = (
                 bio: {
                     ...state.bio,
                     value: action.payload
-                }
+                },
+                updated: true,
             };
         case CV_ACTION_TYPES.ADD_EDUCATION:
             const addEducationList = [...state.education.list, educationEmpty];
@@ -30,7 +32,8 @@ export const cvDataReducer: Reducer<CvData> = (
                 education: {
                     ...state.education,
                     list: addEducationList
-                }
+                },
+                updated: true,
             };
         case CV_ACTION_TYPES.SAVE_EDUCATION:
             const saveEducationList = [...state.education.list];
@@ -40,7 +43,8 @@ export const cvDataReducer: Reducer<CvData> = (
                 education: {
                     ...state.education,
                     list: saveEducationList
-                }
+                },
+                updated: true,
             };
         case CV_ACTION_TYPES.ADD_WORK:
             const addWorkList = [...state.workExperience.list, workEmpty];
@@ -49,7 +53,8 @@ export const cvDataReducer: Reducer<CvData> = (
                 workExperience: {
                     ...state.workExperience,
                     list: addWorkList
-                }
+                },
+                updated: true,
             };
         case CV_ACTION_TYPES.SAVE_WORK:
             const saveWorkList = [...state.workExperience.list];
@@ -59,7 +64,8 @@ export const cvDataReducer: Reducer<CvData> = (
                 workExperience: {
                     ...state.workExperience,
                     list: saveWorkList
-                }
+                },
+                updated: true,
             };
         case CV_ACTION_TYPES.ADD_SECOND_LANGUAGE:
             const addSecondLanguageList = [...state.language.otherLanguages.list, secondLanguageEmpty];
@@ -71,7 +77,8 @@ export const cvDataReducer: Reducer<CvData> = (
                         ...state.language.otherLanguages,
                         list: addSecondLanguageList
                     }
-                }
+                },
+                updated: true,
             };
         case CV_ACTION_TYPES.SAVE_MOTHER_LANGUAGE:
             return {
@@ -79,7 +86,8 @@ export const cvDataReducer: Reducer<CvData> = (
                 language: {
                     ...state.language,
                     motherLanguage: action.payload,
-                }
+                },
+                updated: true,
             };
         case CV_ACTION_TYPES.SAVE_SECOND_LANGUAGE:
             const saveSecondLanguageList = [...state.language.otherLanguages.list];
@@ -92,7 +100,8 @@ export const cvDataReducer: Reducer<CvData> = (
                         ...state.language.otherLanguages,
                         list: saveSecondLanguageList
                     }
-                }
+                },
+                updated: true,
             };
         case CV_ACTION_TYPES.ADD_SKILL:
             const addSkillList = [...state.skills.list, skillEmpty];
@@ -101,7 +110,8 @@ export const cvDataReducer: Reducer<CvData> = (
                 skills: {
                     ...state.skills,
                     list: addSkillList
-                }
+                },
+                updated: true,
             };
         case CV_ACTION_TYPES.SAVE_SKILL:
             const saveSkillList = [...state.skills.list];
@@ -111,12 +121,15 @@ export const cvDataReducer: Reducer<CvData> = (
                 skills: {
                     ...state.skills,
                     list: saveSkillList
-                }
+                },
+                updated: true,
             };
         case CV_ACTION_TYPES.SAVE_CV:
+            return action.payload;
+        case CV_ACTION_TYPES.SET_AS_STORED:
             return {
                 ...state,
-                cvData: action.payload,
+                updated: false,
             };
         default:
             return state;

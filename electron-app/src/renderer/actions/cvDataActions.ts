@@ -2,6 +2,7 @@ import { Action, ActionCreator } from 'redux';
 import { CvData, EducationData, PersonalData, SecondLanguageData, SkillData, WorkExperienceData } from '../model/CvData';
 
 export enum CV_ACTION_TYPES {
+    SET_AS_STORED,
     SAVE_CV,
     SAVE_PERSONAL,
     SAVE_BIO,
@@ -116,26 +117,12 @@ export const saveSkill: ActionCreator<SaveSkillAction> = (index: number, data: S
     payload: data,
 });
 
+export interface SetAsStoredAction extends IActionWithEnum<CV_ACTION_TYPES.SET_AS_STORED> {}
+export const setAsStored: ActionCreator<SetAsStoredAction> = () => ({
+    type: CV_ACTION_TYPES.SET_AS_STORED,
+});
+
 export type CvDataActions = SaveCvAction | SavePersonalAction | SaveBioAction |
     AddEducationAction | SaveEducationAction | AddWorkAction | SaveWorkAction |
     AddSecondLanguageAction | SaveSecondLanguageAction | SaveMotherLanguageAction |
-    AddSkillAction | SaveSkillAction;
-
-
-// export const SET_NAME = "SET_NAME";
-// export const SET_SURNAME = "SET_SURNAME";
-// export const SET_ADDRESS = "SET_ADDRESS";
-// export const SET_CITY = "SET_CITY";
-// export const SET_ZIPCODE = "SET_ZIPCODE";
-// export const SET_COUNTRY = "SET_COUNTRY";
-// export const SET_EMAIL = "SET_EMAIL";
-// export const SET_WEBSITE = "SET_WEBSITE";
-
-// export const SET_EDUCATION_TITLE = "SET_EDUCATION_TITLE";
-// export const SET_EDUCATION_INSTITUTION = "SET_EDUCATION_INSTITUTION";
-// export const SET_EDUCATION_FROM = "SET_EDUCATION_FROM";
-// export const SET_EDUCATION_TO = "SET_EDUCATION_TO";
-// export const SET_EDUCATION_FINAL_GRADE = "SET_EDUCATION_FINAL_GRADE";
-// export const SET_EDUCATION_EQF_LEVEL = "SET_EDUCATION_EQF_LEVEL";
-// export const SET_EDUCATION_SHORT_DESCRIPTION = "SET_EDUCATION_SHORT_DESCRIPTION";
-// export const SET_EDUCATION_LONG_DESCRIPTION = "SET_EDUCATION_LONG_DESCRIPTION";
+    AddSkillAction | SaveSkillAction | SetAsStoredAction;
