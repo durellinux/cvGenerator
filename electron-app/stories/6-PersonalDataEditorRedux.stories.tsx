@@ -18,6 +18,7 @@ somePersonalData.personal = {
     name: "Gianluca",
     surname: "Durelli",
     website: "www.gianlucadurelli.com",
+    phoneNumber: "+39333",
     updated: false
 };
 const somePersonalDataStore = configureStore({cvData: somePersonalData});

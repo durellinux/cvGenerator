@@ -77,6 +77,13 @@ class PersonalDataEditorRedux extends React.Component<IEditorReduxProps<Personal
                         onChange={handleFormChange(data, "website", (v) => dispatch(savePersonal(v)))}
                         margin="normal"
                     />
+                    <TextField
+                        id="phoneNumber"
+                        label="Phone number"
+                        value={data.phoneNumber}
+                        onChange={handleFormChange(data, "phoneNumber", (v) => dispatch(savePersonal(v)))}
+                        margin="normal"
+                    />
                 </ExpansionPanelDetails>
             </EditorComponentWrapper>
         );

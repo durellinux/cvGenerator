@@ -12,6 +12,7 @@ export interface PersonalData extends Updatable {
     country: string;
     email: string;
     website: string;
+    phoneNumber: string;
 }
 
 export interface EducationData extends Updatable {
@@ -86,7 +87,7 @@ export const cvEmpty: CvData = {
         updated: false
     },
     personal: {
-        address: "", cap: "", city: "", country: "", email: "", name: "", surname: "", website: "", updated: false
+        address: "", cap: "", city: "", country: "", email: "", name: "", surname: "", website: "", phoneNumber: "", updated: false
     },
     skills: { list: [], updated: false },
     workExperience: { list: [], updated: false },
