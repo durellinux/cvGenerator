@@ -19,14 +19,9 @@ import { DispatchProps } from "../../commons/DispatchProps";
 
 const MENU_METADATA = [
     {
-        label: 'CV Local State',
-        icon: <Dashboard/>,
-        link: '/cvLocalState',
-    },
-    {
         label: 'CV Redux',
         icon: <DeviceHub/>,
-        link: '/cvRedux',
+        link: '/',
     },
 ];
 
