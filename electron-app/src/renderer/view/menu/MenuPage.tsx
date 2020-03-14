@@ -10,6 +10,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Dashboard from '@material-ui/icons/Dashboard';
 import DeviceHub from '@material-ui/icons/DeviceHub';
+import ImportExport from '@material-ui/icons/ImportExport';
 import Description from '@material-ui/icons/Description';
 import * as React from "react";
 import { connect } from "react-redux";
@@ -19,10 +20,15 @@ import { DispatchProps } from "../../commons/DispatchProps";
 
 const MENU_METADATA = [
     {
-        label: 'CV Redux',
+        label: 'Edit',
         icon: <DeviceHub/>,
         link: '/',
     },
+    {
+        label: 'Import/Export',
+        icon: <ImportExport />,
+        link: '/importExport',
+    }
 ];
 
 
