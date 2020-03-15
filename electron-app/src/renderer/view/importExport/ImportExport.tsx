@@ -7,8 +7,10 @@ import { RootState } from '../../reducers';
 import { connect } from 'react-redux';
 import { saveAs } from 'file-saver';
 import Button from '@material-ui/core/Button';
-import { TextField } from '@material-ui/core';
+import { Divider, TextField } from '@material-ui/core';
 import { saveCv } from '../../actions/cvDataActions';
+import { CheckCircle, Replay } from '@material-ui/icons';
+import { green, yellow } from '@material-ui/core/colors';
 
 interface ImportExportState {
     importPath: string;
@@ -38,52 +40,63 @@ class ImportExport extends React.Component<any, ImportExportState> {
     }
 
     render(): React.ReactNode {
-        const { importPath } = this.state;
-        const { stateImport } = this.state;
+        const { importPath, stateImport } = this.state;
+        const loadIcon = this.getLoadIconElement();
         return (
             <MenuPage>
                 <div style={{ flex: 1 }}/>
                 <div style={{ display: "flex", flex: 10, flexDirection: "column", alignContent: "space-around" }}>
-                    <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="small"
-                            onClick={ this.exportFile }
-                        >
-                            Export
-                        </Button>
+                    <div style={{ flex: 1 }}/>
+                    <div style={{ flex: 10, flexDirection: "column", display: "flex"}}>
+                        <div style={{ flex: 4 }}/>
+                        <div style={{flex: 2, display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                onClick={ this.exportFile }
+                            >
+                                Export
+                            </Button>
+                        </div>
+
+                        <div style={{ flex: 1 }}>
+                            <Divider />
+                        </div>
+
+                        <div style={{flex: 4, display: "flex", flexDirection: "column", alignItems: "center"}}>
+                            <Button
+                                variant="outlined"
+                                color="primary"
+                                size="small"
+                                onClick={this.startImport}
+                            >
+                                Import
+                            </Button>
+                            <div style={{display: "flex", flexDirection: "row", alignItems: "center", alignSelf: "stretch"}}>
+                                <input id="template" type="file" style={{ display: "none" }} onChange={() => this.importFile((document.getElementById("template") as any).files[0].path)} />
+                                { stateImport !== "notStarted" ?
+                                    <React.Fragment>
+                                        <TextField
+                                            required={true}
+                                            id="template-file"
+                                            label="Template"
+                                            value={importPath}
+                                            margin="normal"
+                                            InputProps={{
+                                                readOnly: true,
+                                            }}
+                                            style={{flex: 8}}
+                                        />
+                                        {loadIcon}
+                                    </React.Fragment>
+                                    : null
+                                }
+                            </div>
+                        </div>
+                        <div style={{ flex: 4 }}/>
                     </div>
-                    <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                        <Button
-                            variant="outlined"
-                            color="primary"
-                            size="small"
-                            onClick={() =>(document.getElementById("template") as any).click()}
-                        >
-                            Import
-                        </Button>
-                    </div>
-                    <input id="template" type="file" style={{ display: "none" }} onChange={() => this.importFile((document.getElementById("template") as any).files[0].path)} />
-                    <TextField
-                        required={true}
-                        id="template-file"
-                        label="Template"
-                        value={importPath}
-                        margin="normal"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                    <TextField
-                        id="loadState"
-                        label="State"
-                        value={ stateImport }
-                        margin="normal"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
+                    <div style={{ flex: 1 }}/>
                 </div>
                 <div style={{ flex: 1 }}/>
             </MenuPage>
@@ -96,11 +109,21 @@ class ImportExport extends React.Component<any, ImportExportState> {
         saveAs(blob, "cv.json");
     };
 
+    private startImport = async () => {
+        this.setState(
+            {
+                importPath: "",
+                stateImport: "loading",
+            }
+        );
+
+        (document.getElementById("template") as any).click();
+    };
+
     private importFile =  async (filePath: string) => {
         this.setState(
             {
                 importPath: filePath,
-                stateImport: "loading",
             },
             () => {
                 const { dispatch } = this.props;
@@ -111,8 +134,22 @@ class ImportExport extends React.Component<any, ImportExportState> {
                 this.setState({
                     stateImport: "loaded",
                 })
-            }   
+            }
         );
+    }
+
+    private getLoadIconElement(): JSX.Element | null {
+        const { stateImport } = this.state;
+
+        switch (stateImport) {
+            case 'loading':
+                return <Replay color="primary" style={{ marginTop: "20px", flex: 1 }} />;
+            case 'loaded':
+                return <CheckCircle style={{ color: green[500], marginTop: "20px", flex: 1 }} />;
+            default:
+                return null;
+
+        }
     }
 }
 
