@@ -1,16 +1,20 @@
 import { IStorageService } from '../../service/storage/IStorageService';
 import { AsyncStorageService } from '../../service/storage/AsyncStorageService';
 import * as React from 'react';
+import * as fs from 'fs-extra';
 import MenuPage from '../menu/MenuPage';
 import { RootState } from '../../reducers';
 import { connect } from 'react-redux';
 import { saveAs } from 'file-saver';
 import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
+import { saveCv } from '../../actions/cvDataActions';
 
 interface ImportExportState {
     importPath: string;
+    stateImport: "notStarted" | "loading" | "loaded";
 }
+
 
 class ImportExport extends React.Component<any, ImportExportState> {
     private storage: IStorageService;
@@ -20,20 +24,22 @@ class ImportExport extends React.Component<any, ImportExportState> {
         this.storage = new AsyncStorageService();
         this.state = {
             importPath: '',
+            stateImport: "notStarted",
         };
     }
 
     async componentDidMount(): Promise<void> {
-        const { dispatch } = this.props;
         this.setState(
             {
                 importPath: '',
+                stateImport: "notStarted",
             }
         );
     }
 
     render(): React.ReactNode {
         const { importPath } = this.state;
+        const { stateImport } = this.state;
         return (
             <MenuPage>
                 <div style={{ flex: 1 }}/>
@@ -48,7 +54,17 @@ class ImportExport extends React.Component<any, ImportExportState> {
                             Export
                         </Button>
                     </div>
-                    <input id="template" type="file" style={{display: "none"}} onChange={() => this.importFile((document.getElementById("template") as any).files[0].path)} />
+                    <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            size="small"
+                            onClick={() =>(document.getElementById("template") as any).click()}
+                        >
+                            Import
+                        </Button>
+                    </div>
+                    <input id="template" type="file" style={{ display: "none" }} onChange={() => this.importFile((document.getElementById("template") as any).files[0].path)} />
                     <TextField
                         required={true}
                         id="template-file"
@@ -59,17 +75,16 @@ class ImportExport extends React.Component<any, ImportExportState> {
                             readOnly: true,
                         }}
                     />
-                    <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                        <Button
-                            variant="outlined"
-                            color="primary"
-                            size="small"
-                            onClick={() =>(document.getElementById("template") as any).click()}
-                        >
-                            Import
-                        </Button>
-                        </div>
-                    </div>
+                    <TextField
+                        id="loadState"
+                        label="State"
+                        value={ stateImport }
+                        margin="normal"
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                </div>
                 <div style={{ flex: 1 }}/>
             </MenuPage>
         );
@@ -81,8 +96,23 @@ class ImportExport extends React.Component<any, ImportExportState> {
         saveAs(blob, "cv.json");
     };
 
-    private importFile = (filePath: string) => {
-
+    private importFile =  async (filePath: string) => {
+        this.setState(
+            {
+                importPath: filePath,
+                stateImport: "loading",
+            },
+            () => {
+                const { dispatch } = this.props;
+                const cvLoaded = fs.readFileSync(filePath, 'utf8');
+                const cvData = JSON.parse(cvLoaded);
+                this.storage.store(cvData);
+                this.props.dispatch(saveCv(cvData));
+                this.setState({
+                    stateImport: "loaded",
+                })
+            }   
+        );
     }
 }
 
